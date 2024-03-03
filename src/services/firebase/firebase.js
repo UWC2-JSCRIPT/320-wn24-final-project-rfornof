@@ -15,20 +15,21 @@ const auth = getAuth(firebase)
 const db = getFirestore(firebase)
 
 export function isLoggedIn(auth){
-    // onAuthStateChanged(auth, user => {
-    //     if (user) {
-    //         console.log(
-    //             'logged in!!!!'
-    //         )
-    //         return true
-    //     }
-    //     else {
-    //         console.log(
-    //             'not logged in!!!!'
-    //         )
-    //         navigate('/login')
-    //        return false
-    //     } })
+    const navigate = useNavigate();
+    onAuthStateChanged(auth, user => {
+        if (user) {
+            console.log(
+                'logged in!!!!'
+            )
+            return true
+        }
+        else {
+            console.log(
+                'not logged in!!!!'
+            )
+            navigate('/login')
+           return false
+        } })
     }
 
 export function logout() { 
