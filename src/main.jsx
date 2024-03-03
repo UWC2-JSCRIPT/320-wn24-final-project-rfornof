@@ -16,6 +16,7 @@ import { BookReviewView }from './routes/BookReview/BookReviewView';
 import { BookLogInsert} from './routes/BookLog/BookLogInsert';
 import { BookLogList } from   './routes/BookLog/BookLogList';
 import { BookLogView } from   './routes/BookLog/BookLogView';
+import  {Login}  from "./routes/Auth/Login";
 
 
 
@@ -28,6 +29,12 @@ const router = createBrowserRouter([
     element: <Home />,
     errorElement: <Error />,
   },
+  {
+    path: "/login",
+    element: <Login />,
+    errorElement: <Error />,
+  },
+  
   
 {
   //home_page
