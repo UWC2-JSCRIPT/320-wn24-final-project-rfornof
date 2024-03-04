@@ -32,3 +32,26 @@ Project requirements:
   - Utilizes modern methods of writing JS, no var keyword. Uses arrow functions where appropriate and uses modern methods (for example .map())
 - App has styling and is polished
 - Incorporate custom CSS to your project. Outside CSS libraries are allowed (Bootstrap, Tailwind, etc), Remove `console.log` statements once you're finished with development. Check for and remove Check for any React errors in the console. Fix linting issues
+
+
+
+
+
+book_number
+book_type
+title
+author
+start_date
+finish_date
+rating
+recommended_by
+page_length
+is_fiction
+enjoyed_ending
+favorate_char
+reading_ease
+plot
+favorite_quotes
+review_notes
+ask_author
+is_recommended

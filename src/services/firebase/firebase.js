@@ -1,5 +1,4 @@
 import config from '../../../firebaseConfig.json' with { type: "json" }
-console.log(config)
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
 import {getFirestore,collection, getDocs} from 'firebase/firestore'
 import {initializeApp} from 'firebase/app'
