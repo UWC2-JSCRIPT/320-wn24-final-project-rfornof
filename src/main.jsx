@@ -60,7 +60,7 @@ const router = createBrowserRouter([
 },
 {
   //book_log_insert
-  path: "book_log/:bookId",
+  path: "book_log",
   element: <BookLogInsert />,
 },
 {

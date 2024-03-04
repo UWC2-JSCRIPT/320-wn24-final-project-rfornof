@@ -12,7 +12,7 @@ const firebase = initializeApp(
  
     config);
 const auth = getAuth(firebase)
-const db = getFirestore(firebase)
+export const db = getFirestore(firebase)
 
 export function isLoggedIn(auth){
     const navigate = useNavigate();

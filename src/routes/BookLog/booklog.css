@@ -1,0 +1,12 @@
+.log-list-item{
+    position: relative;
+    text-align: left;
+    border: 1px solid #e0e0e0;
+
+}
+.log-list-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+    margin: 10px;
+}
