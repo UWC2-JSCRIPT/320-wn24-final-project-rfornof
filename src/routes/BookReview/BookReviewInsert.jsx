@@ -1,4 +1,4 @@
-import { fireAuth as auth,logout,isLoggedIn } from '../../services/firebase/firebase';
+import { db,fireAuth as auth,logout,isLoggedIn } from '../../services/firebase/firebase';
 
 
  
