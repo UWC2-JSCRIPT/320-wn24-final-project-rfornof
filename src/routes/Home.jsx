@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
 import { fireAuth as auth,logout,isLoggedIn } from '../services/firebase/firebase';
 //'../../services/firebase/firebase.js';
+import './home.css';
 
 
 export function Home() {
-    const [pokemonList, SetPokemonList] = useState([]);
-    const [option, SetOption] = useState({next: '', previous: ''});
+   
     const navigate = useNavigate();
     function loggedIn(){
     onAuthStateChanged(auth, user => {
@@ -28,40 +28,44 @@ export function Home() {
     loggedIn();
     useEffect(() => {
       
-        fetchPokemon();
+
     }
     , []);
 
-    function getDateFormatted(data){
-        return data.results.map((pokemon, index) => {
-            return (
-                <div key={index}>
-                    <Link to={`/choose/${pokemon.name}`}>{pokemon.name}</Link>
-                </div>
-            );
-        });
-    }
 
-    function fetchPokemon(url="https://pokeapi.co/api/v2/pokemon") {
-        console.log('fetchPokemon',url);
-//https://pokeapi.co/api/v2/pokemon
-        fetch(url)
-        .then(response => response.json())
-        .then(data =>{
-            console.log(data,data.results);
-             SetPokemonList(getDateFormatted(data))
-            SetOption({next: data.next, previous: data.previous});
-        });
-    };
-
-  return (
-    <div>
-      <h1>Pokedex</h1>
-        <button onClick={()=>{logout()}}>Logout</button>
-      {pokemonList}
-      {option.previous && <button onClick={()=>{fetchPokemon(option.next)}}> Previous </button>}
-     <button onClick={()=>{fetchPokemon(option.next)}} > Next </button>
-
-    </div>
-  );
+function goToBookLog(){
+    navigate('/book_log')
+ 
 }
+function goToBookLogList(){
+    navigate('/book_log_list')
+ 
+}
+
+
+
+return (
+    <div>
+         <button onClick={()=>{ navigate('/book_list')}}>List Book Items</button>
+        <button onClick={()=>{ navigate('/book_create')}}>Make Book Item</button>
+
+        <br/>
+        <br/> 
+        <button onClick={()=>{ navigate('/book_log')}}>Make Book Log</button>
+        <button onClick={()=>{ navigate('/book_log_list')}}>List Book Logs</button>
+
+        <br/>
+        <br/>   
+        <button onClick={()=>{ navigate('/book_review')}}>Make Book Review</button>
+        <button onClick={()=>{ navigate('/book_review_list')}}>List Book Reviews</button>
+        <br/>
+        <br/>
+        <button onClick={()=>{logout()}}>Logout</button>
+    
+    </div>
+
+
+);
+}
+
+export default Home;

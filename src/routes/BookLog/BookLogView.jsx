@@ -10,7 +10,7 @@ export function BookLogView() {
   
   return (
     <div>
-      <h1>Pokedex</h1>
+      <h1>not implemented yet</h1>
     </div>
   );
 }
