@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { doc, setDoc } from "firebase/firestore";
 import './bookreview.css'
- 
+ import bookSvg from '../../assets/book.svg'
 export function BookReviewInsert() {
   isLoggedIn(auth);
   const [bookNumber, setBookNumber] = useState(localStorage.getItem('book_number') || '');
@@ -62,19 +62,28 @@ export function BookReviewInsert() {
     
   },[])
   return (
+    <>
+        <img src={bookSvg} className="book-background"></img>
+
+    <div className="body-grid">
+        <br/>
     <form onSubmit={handleSubmit} className="review-insert">
       <div>
         Book You Have Read
       </div>
-        <label>
-            Book Number:
-            <input type="number" value={bookNumber} onChange={e => setBookNumber(e.target.value)} required />
-        </label>
-        <br/>
-        <label>
-            Book Type:
-            <input type="text" value={bookType} onChange={e => setBookType(e.target.value)} required />
-        </label>
+            <div className='body-grid-item'>
+                <div className='book-type-grid'>
+            <label className='book-type-grid-item'>
+                Book Number:
+                <input type="number" value={bookNumber} onChange={e => setBookNumber(e.target.value)} required />
+            </label>
+            <br/>
+            <label className='book-type-grid-item'>
+                Book Type:
+                <input type="text" value={bookType} onChange={e => setBookType(e.target.value)} required />
+            </label>
+             </div>
+                 </div>
         <br/>
         <label>
             Title:
@@ -106,6 +115,11 @@ export function BookReviewInsert() {
             <input type="text" value={recommendedBy} onChange={e => setRecommendedBy(e.target.value)} required />
         </label>
         <br/>
+        </form>
+        </div> 
+        {/* grid end>  */}
+        <div className="grid-bottom">
+            <form>
         <label>
             Page Length:
             <input type="number" value={pageLength} onChange={e => setPageLength(e.target.value)} required />
@@ -158,5 +172,7 @@ export function BookReviewInsert() {
         <br/>
         <button type="submit">Submit</button>
     </form>
+    </div>
+    </>
 );
 }
