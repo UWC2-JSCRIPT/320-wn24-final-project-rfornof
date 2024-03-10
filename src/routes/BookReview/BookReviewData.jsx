@@ -10,34 +10,35 @@ import { getDoc, collection } from "firebase/firestore";
 import PropTypes from 'prop-types';
 
 BookReviewData.propTypes = {
-    id: PropTypes.string,
+    id: PropTypes.string||PropTypes.undefined,
     // Add other props here
 };
 // add propslist
 
 export function BookReviewData(props) {
 
-    console.log('hit beginning of book review data', props.id)
+    
 
     let navigate
-
-    const [isReadOnly, setIsReadOnly]= useState(false)
-    // if(props.id !== undefined){
-    //     console.log('read only is true')
-    //     setIsReadOnly(true)
-    // }
-    if (!isReadOnly) {
+    let readOnlyNow = false
+    if(!props.id){
+        console.log('read only is true')
+        readOnlyNow = true
+    }
+    const [isReadOnly, setIsReadOnly]= useState(readOnlyNow)
+   
+    if (isReadOnly == false) {
         isLoggedIn(auth);
         navigate = useNavigate();
     }
     const [bookNumber, setBookNumber] = useState('');
-    const [bookType, setBookType] = useState( '');
-    const [title, setTitle] = useState( '');
-    const [author, setAuthor] = useState( '');
+    const [bookType, setBookType] = useState('');
+    const [title, setTitle] = useState('');
+    const [author, setAuthor] = useState('');
     const [startDate, setStartDate] = useState('');
     const [finishDate, setFinishDate] = useState('');
-    const [rating, setRating] = useState( 0);
-    const [firstStarHit, setFirstStarHit] = useState(false)
+    const [rating, setRating] = useState(0);
+    const [firstStarHit, setFirstStarHit] = useState(0)
     // const [recommendedBy, setRecommendedBy] = useState(localStorage.getItem('recommended_by') || '');
     // const [pageLength, setPageLength] = useState(localStorage.getItem('page_length') || '');
     // const [isFiction, setIsFiction] = useState(JSON.parse(localStorage.getItem('is_fiction')) || false);
@@ -50,7 +51,7 @@ export function BookReviewData(props) {
     // const [askAuthor, setAskAuthor] = useState(localStorage.getItem('ask_author') || '');
     // const [isRecommended, setIsRecommended] = useState(JSON.parse(localStorage.getItem('is_recommended')) || false);
     const [stars, setStars] = useState([])
-    const [bookData, SetBookData] = useState({});
+   
     const [overallData, setOverallData] = useState()
     function getInfoFromFirebase(id) {
         if (!props.id) {
@@ -64,7 +65,6 @@ export function BookReviewData(props) {
             console.log(docSnap.data(), 'docSnap')
             if (docSnap.exists()) {
                 console.log("Document data:", docSnap.data());
-                SetBookData(docSnap.data());
                 setProps(docSnap.data())
             } else {
                 // doc.data() will be undefined in this case
@@ -85,7 +85,7 @@ export function BookReviewData(props) {
         setStartDate(bookData.start_date)
         setFinishDate(bookData.finish_date)
         setRating(bookData.rating)
-
+        star(bookData.rating, isReadOnly)
 
         console.log(rating, '.rating')
     }
@@ -119,31 +119,36 @@ export function BookReviewData(props) {
         const uuid = uuidv4()
         setDoc(doc(db, "review", uuid), bookData).then((doc) => {
             console.log('sent document to review', uuid)
-            navigate(`book_review_view/${uuid}`)
+            navigate(`/book_review_view/${uuid}`)
         })
     };
     function star(stars = 0, readOnly = false) {
 
-        if(isReadOnly && readOnly){
-            return 
-        }
+    
+          
         const resultOut = []
             for (let i = 0; i < 5; i++) {
                 if (stars > i) {
                     resultOut.push(<span onClick={() => {
-                        star(i + 1, false)
+                        star(isReadOnly? rating:i + 1, isReadOnly)
 
-                    }} className="fa fa-star checked" readonlyoff={isReadOnly}></span>)
+                    }} className="fa fa-star checked" readOnly={isReadOnly}></span>)
 
                 }
                 else {
                     resultOut.push(<span onClick={() => {
-                        star(i + 1,false)
-                    }} className="fa fa-star" readonlyoff={isReadOnly}></span>)
+                        star(isReadOnly? rating: i + 1,isReadOnly)
+                    }} className="fa fa-star" readOnly={isReadOnly}></span>)
                 }
             }
+            
+        
+        
             setRating(stars)
+            setFirstStarHit(firstStarHit+1)
             setStars(resultOut)
+            
+            console.log('made it out, did ratings and such')
     
 
 
@@ -157,12 +162,23 @@ export function BookReviewData(props) {
         ]
         const resultOut = []
         for (const item of listOfRadioItems) {
-
-            resultOut.push(<div className="type-grid-item"><input checked={bookType === item[0]} readonlyoff={isReadOnly} type="radio" id={item[0]} name="book_type" value={item[0]} onChange={() => {
+            if(bookType !='' && bookType=== item[0]){
+                resultOut.push(<div className="type-grid-item"><input checked={true} 
+                readOnly={isReadOnly} type="radio" id={item[0]} name="book_type" value={item[0]}
+                    onChange={() => {
+                    setBookType(item[0])
+                    console.log(item[0])
+                }} />
+                    <label htmlFor={item[0]}>{item[1]}</label><br /> </div>)
+                    continue
+            }
+            resultOut.push(<div className="type-grid-item"><input  
+            readOnly={isReadOnly} type="radio" id={item[0]} name="book_type" value={item[0]}
+                onChange={() => {
                 setBookType(item[0])
                 console.log(item[0])
             }} />
-                <label for={item[0]}>{item[1]}</label><br /> </div>)
+                <label htmlFor={item[0]}>{item[1]}</label><br /> </div>)
 
 
         }
@@ -181,28 +197,28 @@ export function BookReviewData(props) {
                     <span className="fonty header-book-item header-book-title">Book Review</span>
                     <div className="header-book-item header-book-bookmark">
                         <img width="100%" src={bookmarkSvg} />
-                        <input type="text" readonlyoff={isReadOnly} value={bookNumber} onChange={(event) => { setBookNumber(event.target.value) }} className="header-book-item book-number" />
+                        <input type="text" readOnly={isReadOnly} value={bookNumber} onChange={(event) => { setBookNumber(event.target.value) }} className="header-book-item book-number" />
                     </div>
 
                     <div className="header-book-item line-title " >
                         Title
                     </div>
                     <div className="line line-title"></div>
-                    <input type="text" readonlyoff={isReadOnly} value={title} className="line line-title  underneath-offset" onChange={(event) => { setTitle(event.target.value) }} />
+                    <input type="text" value={title} readOnly={isReadOnly} className="line line-title  underneath-offset" onChange={(event) => { setTitle(event.target.value) }} />
 
                     <div className="line line-author "> </div>
 
                     <div className="line-author"  >
                         Author
                     </div>
-                    <input type="text" readonlyoff={isReadOnly} value={author} onChange={(event) => { setAuthor(event.target.value) }}
+                    <input type="text"  value={author} readOnly={isReadOnly} onChange={(event) => { setAuthor(event.target.value) }}
                         className="line-author underneath-offset-author" />
                     <div className='date-start'>
                         <div className="date-label">Start-date <span className="space"></span>Finish-date<br /></div>
-                        <input type="date" readonlyoff={isReadOnly} value={startDate} onChange={e => setStartDate(e.target.value)} required />
+                        <input type="date"  value={startDate} readOnly={isReadOnly} onChange={e => setStartDate(e.target.value)} required />
                         <div className="date-end">
                             {console.log('finishDate', finishDate, 'isReadOnly', isReadOnly)}
-                            <input type="date" readonlyoff={isReadOnly} value={finishDate} onChange={e => setFinishDate(e.target.value)} required />
+                            <input type="date"  value={finishDate} readOnly={isReadOnly} onChange={e => setFinishDate(e.target.value)} required />
                         </div>
 
                     </div>
@@ -223,7 +239,7 @@ export function BookReviewData(props) {
     }
 
     useEffect(() => {
-        star(rating)
+       
         getInfoFromFirebase()
         // if(props.id === undefined){
         //     console.log('read only is false')
@@ -235,12 +251,12 @@ export function BookReviewData(props) {
         // }
        
         console.log(props.id, 'props.id')
-        
+        star(rating)
         handleOverallData()
        
 
 
-    }, [rating,bookNumber])
+    }, [rating,bookNumber, title, author, startDate, finishDate, ])
     return (
         <>
             {overallData}

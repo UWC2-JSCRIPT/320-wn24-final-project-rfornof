@@ -32,7 +32,10 @@ export function BookLogInsert() {
     localStorage.setItem('pageNumber', pageNumber);
     localStorage.setItem('isbn', isbn);
     localStorage.setItem('comments', comments);
-    await setDoc(doc(db, "booklog", uuidv4()), bookData);
+    setDoc(doc(db, "booklog", uuidv4()), bookData).then((data) => {
+      console.log(data)
+    
+    })};
   }
   function setDataIfExist() {
     if (localStorage.getItem('pageNumber')) {

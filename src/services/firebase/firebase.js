@@ -3,6 +3,7 @@ import {getAuth, onAuthStateChanged} from 'firebase/auth'
 import {getFirestore,collection, getDocs} from 'firebase/firestore'
 import {initializeApp} from 'firebase/app'
 import {Link, useNavigate} from 'react-router-dom';
+import { doc, deleteDoc } from "firebase/firestore";
 
 
 
@@ -41,11 +42,32 @@ export function logout() {
       
 }
 
+export function deleteReview(uuid){
+   
+ deleteDoc(doc(db, "review", uuid)).then(() => {
+    console.log("Document successfully deleted!");
+ }).catch((error) => {
+    console.error("Error removing document: ", error);
+ });
+
+}
+
+
+export function deleteBookLog(uuid){
+   
+    deleteDoc(doc(db, "booklog", uuid)).then(() => {
+       console.log("Document successfully deleted!");
+    }).catch((error) => {
+       console.error("Error removing document: ", error);
+    });
+    
+   }
 
 
 const booksCollection = collection(db, 'books-cry')
-const querySnapshot = await getDocs(booksCollection)
-console.log(querySnapshot.docs.map(doc => doc.data()))
+const querySnapshot = getDocs(booksCollection).then((querySnapshot) => {
+    console.log(querySnapshot.docs.map(doc => doc.data()))
+})
 
 
 

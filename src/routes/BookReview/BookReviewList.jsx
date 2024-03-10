@@ -1,17 +1,17 @@
-import {getAuth, onAuthStateChanged} from 'firebase/auth'
-import { fireAuth as auth,logout,isLoggedIn } from '../../services/firebase/firebase';
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { fireAuth as auth, logout, isLoggedIn, deleteReview } from '../../services/firebase/firebase';
 import '../BookLog/booklog.css'
-import { useState,useEffect} from 'react';
-import { getDocs,collection } from "firebase/firestore";
+import { useState, useEffect } from 'react';
+import { getDocs, collection } from "firebase/firestore";
 import { db } from '../../services/firebase/firebase';
 import { v4 as uuidv4 } from 'uuid';
 
 export function BookReviewList() {
   const [docs, setDocs] = useState([]);
-
+  const [update, setUpdate] = useState(0);
   isLoggedIn(auth);
   function getBookReviewList() {
-    
+
     getDocs(collection(db, "review")).then((querySnapshot) => {
       const resultData = [];
       querySnapshot.forEach((docIn) => {
@@ -19,26 +19,30 @@ export function BookReviewList() {
         console.log(docIn.id, " => ", docIn.data());
         const doc = docIn.data();
         const dateOut = new Date(doc.finish_date);
-        
-        resultData.push(      
-        <div key={uuidv4()} className="log-list-item">
-                  <a href= {`book_review_view/${docIn.id}`}> title: {doc.title}</a>, Rating: {doc.rating}
-        , finishDate: {dateOut.toLocaleDateString()} <span>||</span>
-        
-      </div>);
+
+        resultData.push(
+          <div key={uuidv4()} className="log-list-item">
+            <a href={`book_review_view/${docIn.id}`}> title: {doc.title}</a>, Rating: {doc.rating}, 
+            <button 
+            onClick={() => { 
+            deleteReview(docIn.id); 
+            setUpdate(update + 1 ) }}>DELETE</button>
+            , finishDate: {dateOut.toLocaleDateString()} <span>||</span>
+
+          </div>);
 
       });
       setDocs(resultData)
     }
-    
-     );
+
+    );
   }
   useEffect(() => {
     getBookReviewList()
-  },[])
+  }, [update])
   return (
     <div className="log-list-grid">
-    {docs}
+      {docs}
     </div>
   );
 }
