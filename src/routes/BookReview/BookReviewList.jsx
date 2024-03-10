@@ -22,8 +22,8 @@ export function BookReviewList() {
         
         resultData.push(      
         <div key={uuidv4()} className="log-list-item">
-                  <a href= {`book_review_view/${docIn.id}`}> title:  {doc.title} <span>||</span></a>
-        finishDate: {dateOut.toLocaleDateString()} <span>||</span>
+                  <a href= {`book_review_view/${docIn.id}`}> title: {doc.title}</a>, Rating: {doc.rating}
+        , finishDate: {dateOut.toLocaleDateString()} <span>||</span>
         
       </div>);
 

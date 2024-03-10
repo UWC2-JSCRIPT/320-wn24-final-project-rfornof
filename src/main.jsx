@@ -46,12 +46,12 @@ const router = createBrowserRouter([
 {
     //book_review_insert
     path: "book_review",
-    element: <BookReviewInsert/>,
+    element: <BookReviewInsert idIn={undefined}/>,
 },
 {
   //book_review_view
   path: "book_review_view/:bookReviewId",
-  element: <BookReviewView />,
+  element: <BookReviewView/>,
 },
 {
   //book_review_list
