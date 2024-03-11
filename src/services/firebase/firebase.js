@@ -63,6 +63,16 @@ export function deleteBookLog(uuid){
     
    }
 
+   export function deleteBookItem(uuid){
+   
+    deleteDoc(doc(db, "book_item", uuid)).then(() => {
+       console.log("Document successfully deleted!");
+    }).catch((error) => {
+       console.error("Error removing document: ", error);
+    });
+    
+   }
+
 
 const booksCollection = collection(db, 'books-cry')
 const querySnapshot = getDocs(booksCollection).then((querySnapshot) => {

@@ -8,6 +8,7 @@ import bookmarkSvg from '../../assets/bookmark1.svg'
 import { useNavigate } from 'react-router-dom';
 import { getDoc, collection } from "firebase/firestore";
 import PropTypes from 'prop-types';
+import { Menu } from '../Menu';
 
 BookReviewData.propTypes = {
     id: PropTypes.string||PropTypes.undefined,
@@ -19,9 +20,9 @@ export function BookReviewData(props) {
 
     
 
-    let navigate
+    const navigate = useNavigate();
     let readOnlyNow = false
-    if(!props.id){
+    if(props.id){
         console.log('read only is true')
         readOnlyNow = true
     }
@@ -29,7 +30,7 @@ export function BookReviewData(props) {
    
     if (isReadOnly == false) {
         isLoggedIn(auth);
-        navigate = useNavigate();
+       
     }
     const [bookNumber, setBookNumber] = useState('');
     const [bookType, setBookType] = useState('');
@@ -132,7 +133,7 @@ export function BookReviewData(props) {
                     resultOut.push(<span onClick={() => {
                         star(isReadOnly? rating:i + 1, isReadOnly)
 
-                    }} className="fa fa-star checked" readOnly={isReadOnly}></span>)
+                    }} className="fa fa-star checked" width="200%" readOnly={isReadOnly}></span>)
 
                 }
                 else {
@@ -197,24 +198,24 @@ export function BookReviewData(props) {
                     <span className="fonty header-book-item header-book-title">Book Review</span>
                     <div className="header-book-item header-book-bookmark">
                         <img width="100%" src={bookmarkSvg} />
-                        <input type="text" readOnly={isReadOnly} value={bookNumber} onChange={(event) => { setBookNumber(event.target.value) }} className="header-book-item book-number" />
+                        <input type="text" readOnly={isReadOnly} value={bookNumber} onChange={(event) => { setBookNumber(event.target.value) }} className="header-book-item book-number fonty" />
                     </div>
 
-                    <div className="header-book-item line-title " >
+                    <div className="header-book-item line-title size-normal " >
                         Title
                     </div>
-                    <div className="line line-title"></div>
-                    <input type="text" value={title} readOnly={isReadOnly} className="line line-title  underneath-offset" onChange={(event) => { setTitle(event.target.value) }} />
+                    <div className="line line-title "></div>
+                    <input type="text" value={title} readOnly={isReadOnly} className="line line-title  underneath-offset size-normal" onChange={(event) => { setTitle(event.target.value) }} />
 
                     <div className="line line-author "> </div>
 
-                    <div className="line-author"  >
+                    <div className="line-author size-normal"  >
                         Author
                     </div>
                     <input type="text"  value={author} readOnly={isReadOnly} onChange={(event) => { setAuthor(event.target.value) }}
-                        className="line-author underneath-offset-author" />
+                        className="line-author underneath-offset-author size-normal" />
                     <div className='date-start'>
-                        <div className="date-label">Start-date <span className="space"></span>Finish-date<br /></div>
+                        <div className="date-label size-normal">Start-date <span className="space"></span>Finish-date<br /></div>
                         <input type="date"  value={startDate} readOnly={isReadOnly} onChange={e => setStartDate(e.target.value)} required />
                         <div className="date-end">
                             {console.log('finishDate', finishDate, 'isReadOnly', isReadOnly)}
@@ -225,14 +226,14 @@ export function BookReviewData(props) {
 
                 </div>
                 <div className="rating-grid">
-                    <div className="rating-item">
+                    <div className="rating-item size-normal">
                         Rating: {stars}
                     </div>
 
                 </div>
 
                 {!isReadOnly && <button type="submit" className="submit-button" onClick={(e) => { handleSubmit(e) }}>Submit</button>}
-
+                {isReadOnly &&  <button className="submit-button" onClick={()=>{ navigate('/book_review_list')}}>Back to Book Review List</button>}
 
             </>
         )
@@ -259,6 +260,7 @@ export function BookReviewData(props) {
     }, [rating,bookNumber, title, author, startDate, finishDate, ])
     return (
         <>
+        <Menu/>
             {overallData}
         </>
 

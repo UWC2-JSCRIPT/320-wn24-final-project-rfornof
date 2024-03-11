@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider,
+  createHashRouter
 } from "react-router-dom";
 import App from './App.jsx'
 import './index.css'
@@ -18,12 +19,14 @@ import { BookLogList } from   './routes/BookLog/BookLogList';
 import { BookLogView } from   './routes/BookLog/BookLogView';
 import  {Login}  from "./routes/Auth/Login";
 
+import { BookItemInsert } from './routes/BookItem/BookItemInsert';
+import { BookItemList } from './routes/BookItem/BookItemList';
 
 
 
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Home />,
@@ -72,7 +75,18 @@ const router = createBrowserRouter([
     //book_log_list 
   path: "book_log_list",
   element: <BookLogList />,
-}
+},
+{
+  //book_item_insert
+  path: "book_item",
+  element: <BookItemInsert />,
+},
+
+{
+  //book_item_insert
+  path: "book_item_list",
+  element: <BookItemList />,
+},
 
 
 

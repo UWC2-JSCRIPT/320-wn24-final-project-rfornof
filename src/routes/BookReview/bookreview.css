@@ -6,8 +6,8 @@
     position: absolute;
     max-width: 98vh;
     top: -130px;
-    left: 0px;
-    width: 100%;
+    left: -300px;
+    width: 120%;
     height: auto;
     z-index: -1;
     opacity: 0.9;
@@ -25,8 +25,8 @@
 }
 input[type="text"] {
    
-    background-color: transparent;
-    border: 0px none;
+    text-align: left;/* background-color: transparent; */
+    border: 2px none;
    
 }
 input[type="radio"] {
@@ -35,7 +35,7 @@ input[type="radio"] {
     transform: scale(0.5);
   }
 label{
-    font-size: 10px;
+    font-size: 20px;
     font-weight: 400;
     font-style: normal;
 
@@ -64,6 +64,11 @@ label{
     font-family: "Style Script", cursive;
     font-weight: 400;
     font-style: normal;
+    font-size: 25px;
+  }
+  .fonty2 {
+    
+    font-size: 25px;
   }
 
 .header-book{
@@ -80,20 +85,28 @@ label{
     position: absolute;
     top:-15px;
     left: 50%;
+    font-size: 40px;
 }
 .header-book-bookmark{
-    width: 30%;
+    width: 50%;
     height: auto;
     position: absolute;
-    top: 50px;
-    left:135px;
+    top: 175px;
+    left: -35px;
 }
 .book-number{
     text-align: left;
     position:absolute;
-    top: 20px;
-    left: 10px;
-    max-width: 15px;
+    top: 30px;
+    left: 0px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 10px;
+    max-width: 25px;
+    font-size: 3em;
+    min-width: 100px;
+    background-color: transparent;
 }
 
 .type-grid{
@@ -101,8 +114,8 @@ label{
     grid-template-columns: 1fr 1fr;
     grid-gap: 0px;
     position: absolute;
-    top: 100px;
-    left: 29%;
+    top: 260px;
+    left: 34%;
     width: 15%;
     height: auto;
     z-index: 4;
@@ -113,7 +126,7 @@ label{
     z-index: 5;
     position: relative;
     text-align: left;
-    max-width:80px;
+    min-width: 100 px;
     /* padding: 1px; */
     /* background-color: transparent; */
     /* border-radius: 10px; */
@@ -126,7 +139,7 @@ label{
 .line-title {
     position: absolute;
     top: 30%;
-    left: 27%;
+    left: 7%;
     width: 350px;
     text-align: center;
     
@@ -135,37 +148,44 @@ label{
 .line-author {
     position: absolute;
     top: 40%;
-    left: 27%;
+    left: 7%;
     width: 350px;
     text-align: center;
-    
-   
 }
+.size-normal{
+    font-size: 20px;
+}
+     
+
 .underneath-offset{
     position: absolute;
-    text-align: center;
-    top: 220px;
-    left: 27%;
-  
+    text-align: left;
+    top: 380px;
+    left: 50px;
+    min-width: 200px;
+    min-height: 20px;
+    background-color: transparent;
     height: auto;
-    z-index: -1;
+    z-index: 6;
     opacity: 0.9;
 }
 .underneath-offset-author{
     position: absolute;
     text-align: center;
-    top: 300px;
-    left: 27%;
-  
+    top: 520px;
+    left: 50px;
+    min-width: 200px;
+    min-height: 20px;
+    background-color: transparent;
     height: auto;
-    z-index: -1;
+    z-index: 7;
     opacity: 0.9;
 }
 .date-start{
 
     position: absolute;
-    top: 380px;
-    left: 35%;
+    top: 750px;
+    left: 15%;
     text-align: center;
 }
 .date-end{
@@ -178,10 +198,10 @@ label{
 }
 .date-label{
     position: absolute;
-    top: -20px;
-    min-width: 400px;
-    left: -60%;
-    text-align: center;
+    top: -30px;
+    min-width: 200px;
+    left: 30px;
+    text-align: left;
 }
 .space{
     min-width: 100px;
@@ -189,9 +209,9 @@ label{
 }
 .submit-button{
     position: absolute;
-    top: 580px;
-    left: 13.4%;
-    min-width: 67.5vh;
+    top: 1054px;
+    left: 17.9%;
+    min-width: 64.5vh;
     text-align: center;
     background-color: rgb(182, 243, 243);
     color: black;
@@ -206,7 +226,7 @@ label{
     grid-gap: 20px;
     position: absolute;
     top: 500px;
-    left: 18%;
+    left: 25%;
     width: 15%;
     height: auto;
     z-index: 4;
@@ -216,10 +236,21 @@ label{
 .rating-item{
     z-index: 5;
     position: relative;
-    text-align: left;
+    text-align: center;
     min-width:80px;
+    top: 200px;
     /* padding: 1px; */
     /* background-color: transparent; */
     /* border-radius: 10px; */
     /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+}
+.logout-position{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+.home-position{
+    position: absolute;
+    top: 5px;
+    right: 40%;
 }

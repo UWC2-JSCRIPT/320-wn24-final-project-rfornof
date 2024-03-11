@@ -1,18 +1,19 @@
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
-import { fireAuth as auth,logout,isLoggedIn } from '../../services/firebase/firebase';
+import { fireAuth as auth,logout,isLoggedIn, deleteBookItem } from '../../services/firebase/firebase';
 import { useState } from 'react';
 import { useEffect } from 'react';
  import { getDocs,collection } from "firebase/firestore";
   import { db } from '../../services/firebase/firebase';
 import { v4 as uuidv4 } from 'uuid';
-import './booklog.css'
 
 
-export function BookLogList() {
+
+export function BookItemList() {
   const [docs, setDocs] = useState([]);
+  const [update, setUpdate] = useState(3);
    function getBookLogList() {
 
-    getDocs(collection(db, "booklog")).then((querySnapshot) => {
+    getDocs(collection(db, "book_item")).then((querySnapshot) => {
       const resultData = [];
       querySnapshot.forEach((docIn) => {
         // doc.data() is never undefined for query doc snapshots
@@ -22,10 +23,10 @@ export function BookLogList() {
         
         resultData.push(      
         <div key={uuidv4()} className="log-list-item">
-        ISBN:  {doc.ISBN} <span>||</span>
-        Page Number: {doc.page_number} <span>||</span>
-        Date: {dateOut.toLocaleDateString()}
-        <p>Comments: {doc.comments}</p>
+          <button onClick={()=>{deleteBookItem(docIn.id); setUpdate(update+1);getBookLogList()}}>Delete</button>
+        ISBN:  {doc.isbn} <span>||</span>
+        Title: {doc.title} <span>||</span>
+        Author: {doc.author} <span>||</span>
       </div>);
 
       });
@@ -36,7 +37,7 @@ export function BookLogList() {
   }
   useEffect(() => {
     getBookLogList()
-  },[])
+  },[update])
 
   isLoggedIn(auth);
   return (

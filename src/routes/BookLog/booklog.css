@@ -1,12 +1,38 @@
 .log-list-item{
     position: relative;
     text-align: left;
-    border: 1px solid #e0e0e0;
+    /* border: 1px solid #e0e0e0; */
 
 }
 .log-list-grid{
     display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 10px;
-    margin: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-gap:10px;
+    margin: 0px;
+}
+.link {
+    color: #08144c;
+    text-decoration:wavy;
+    display: block;
+    padding: 10px;
+    max-width: 100vh;
+    min-height: 10vh;
+    background-color: #ffffff;
+    /* border-radius: 5px; */
+    margin: 5px;
+}
+.position-bookmark{
+    position: absolute;
+    top: 30px;
+    left: 10.5%;
+    max-width: 150px;
+    /* width: 0px; */
+    height: auto;
+    text-align: center;
+}
+.bookmark-size{
+    position: relative;
+ 
+    width: 33vh;
+    height: auto;
 }
