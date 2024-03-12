@@ -5,7 +5,9 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { fireAuth as auth } from '../../services/firebase/firebase'
 //'../services/firebase/firebase.js';
 import { NavLink, useNavigate } from 'react-router-dom'
- 
+import background from '../../assets/readinglog.png'
+import "../../routes/home.css"
+
 export const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -30,15 +32,18 @@ export const Login = () => {
  
     return(
         <>
+
+     
             <main >        
                 <section>
                     <div>                                            
                                        
-                                                       
-                        <form>                                              
+                    <img className='login-background' src={background} />                           
+                        <form className='login-inputs'>                                              
                             <div>
+                          
                                 <label htmlFor="email-address">
-                                    Email address
+                                    
                                 </label>
                                 <input
                                     id="email-address"
@@ -52,7 +57,7 @@ export const Login = () => {
 
                             <div>
                                 <label htmlFor="password">
-                                    Password
+                                    
                                 </label>
                                 <input
                                     id="password"
@@ -65,11 +70,11 @@ export const Login = () => {
                             </div>
                                                 
                             <div>
-                                <button                                    
+                                <div className='login-button'                                   
                                     onClick={onLogin}                                        
                                 >      
                                     Login                                                                  
-                                </button>
+                                </div>
                             </div>                               
                         </form>
                        
