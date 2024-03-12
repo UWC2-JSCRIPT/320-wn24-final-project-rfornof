@@ -1,9 +1,12 @@
+
 import {Link, useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
 import { fireAuth as auth,logout,isLoggedIn } from '../services/firebase/firebase';
 //'../../services/firebase/firebase.js';
+import tableOfContents from '../assets/table_of_contents.png';
 import './home.css';
+import "./BookReview/bookreview.css";
 
 
 export function Home() {
@@ -46,18 +49,19 @@ function goToBookLogList(){
 
 return (
     <div>
-         <button onClick={()=>{ navigate('/book_list')}}>List Book Items</button>
-        <button onClick={()=>{ navigate('/book_create')}}>Make Book Item</button>
+         {/* <button onClick={()=>{ navigate('/book_item_list')}}>List Book Items</button>
+        <button onClick={()=>{ navigate('/book_item')}}>Make Book Item</button> */}
+
+        {/* <br/>
+        <br/> 
+        <button onClick={()=>{ navigate('/book_log')}}>Make Book Log</button>
+        <button onClick={()=>{ navigate('/book_log_list')}}>List Book Logs</button> */}
 
         <br/>
         <br/> 
-        <button onClick={()=>{ navigate('/book_log')}}>Make Book Log</button>
-        <button onClick={()=>{ navigate('/book_log_list')}}>List Book Logs</button>
-
-        <br/>
-        <br/>   
-        <button onClick={()=>{ navigate('/book_review')}}>Make Book Review</button>
-        <button onClick={()=>{ navigate('/book_review_list')}}>List Book Reviews</button>
+        <img src={tableOfContents} alt="table of contents" width="300vh" />  <br/>
+        <a className='blue-link fonty'  onClick={()=>{ navigate('/book_review')}}>Create a Review.........pg.   3</a><br/>
+        <a className='blue-link fonty' onClick={()=>{ navigate('/book_review_list')}}>List of Reviews..........pg.   4</a>
         <br/>
         <br/>
         <button onClick={()=>{logout()}}>Logout</button>

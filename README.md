@@ -1,5 +1,22 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=14070910&assignment_repo_type=AssignmentRepo)
 # 320-Final-Project
+##Readme Updated
+
+1) What worked well in this project (what was easy/straightforward)?
+- The idea of it was very nice in my head. It was easy to make the wireframe and the schedule. 
+
+2) What didn't work well (what was difficult to understand or parse)?
+- CSS lining up divs
+- realizing zoom was at 150% and everything shifted 
+
+3) What changes would you make to this project now that it's deployed?
+- try to finish all the ideas in my head. Maybe not make so many ideas as a starting project.
+4) What would you improve and/or add to this project now that it's deployed?
+- more styling so it matches my ideas. 
+- more time 
+- roles for authentication so an admin user sees some things differently than a regular user. 
+
+
 
 Project requirements:
 
@@ -55,3 +72,5 @@ favorite_quotes
 review_notes
 ask_author
 is_recommended
+
+

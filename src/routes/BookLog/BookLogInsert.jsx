@@ -4,12 +4,13 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { doc, setDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 // Add a new document in collection "cities"
 
 
 
 export function BookLogInsert() {
-
+  const navigate = useNavigate();
 
   const [pageNumber, setPageNumber] = useState('');
   const [isbn, setIsbn] = useState('');
@@ -32,7 +33,10 @@ export function BookLogInsert() {
     localStorage.setItem('pageNumber', pageNumber);
     localStorage.setItem('isbn', isbn);
     localStorage.setItem('comments', comments);
-    await setDoc(doc(db, "booklog", uuidv4()), bookData);
+     setDoc(doc(db, "booklog", uuidv4()), bookData).then((data) => {
+      console.log(data)
+     });
+    navigate('/book_log_list')
   }
   function setDataIfExist() {
     if (localStorage.getItem('pageNumber')) {

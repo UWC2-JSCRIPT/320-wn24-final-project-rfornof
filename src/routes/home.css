@@ -1,0 +1,7 @@
+.blue-link{
+
+}
+.blue-link:hover{
+    color: #2fc9bc;
+text-decoration: underline;
+}
