@@ -27,8 +27,8 @@ export function BookReviewList() {
         console.log(docIn.id, " => ", docIn.data());
         const doc = docIn.data();
         const dateOut = new Date(doc.finish_date);
-        setRating(doc.rating)
-        star(doc.rating, true)
+      
+        
         resultData.push(
 
           <div key={uuidv4()} className="log-list-item">
@@ -85,7 +85,7 @@ export function BookReviewList() {
 
 }
   useEffect(() => {
-    star(rating)
+    
     getBookReviewList()
    
 console.log('rating', rating)

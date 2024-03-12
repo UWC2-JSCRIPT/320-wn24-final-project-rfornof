@@ -10,7 +10,7 @@ import React, {memo} from 'react';
 import { useParams } from 'react-router-dom';
 export function BookReviewView() {
   const [bookData, SetBookData] = useState({});
-  isLoggedIn(auth);
+  // isLoggedIn(auth);
   
   const { bookReviewId } = useParams();
   console.log('choose id',bookReviewId);

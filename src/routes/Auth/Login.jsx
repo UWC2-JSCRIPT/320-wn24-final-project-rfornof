@@ -33,7 +33,7 @@ export const Login = () => {
             <main >        
                 <section>
                     <div>                                            
-                        <p> FocusApp </p>                       
+                                       
                                                        
                         <form>                                              
                             <div>

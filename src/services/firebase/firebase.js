@@ -1,4 +1,4 @@
-import config from '../../../firebaseConfig.json' with { type: "json" }
+import config from '../../../firebaseConfig.js'
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
 import {getFirestore,collection, getDocs} from 'firebase/firestore'
 import {initializeApp} from 'firebase/app'
