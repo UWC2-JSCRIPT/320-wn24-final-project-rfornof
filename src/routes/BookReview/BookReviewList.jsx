@@ -36,7 +36,7 @@ export function BookReviewList() {
             <div className='position-bookmark'>
               <a className="link" onClick={ ()=> navigate(`/book_review_view/${docIn.id}`)}> 
              <span className='fonty fonty2'>{doc.title}</span></a> <br/><br/>{stars} <br/><br/>
-             <span className='fonty fonty2'> Author: {doc.author}</span><br/><br/>
+             <span className='fonty fonty2 fonty3'> Author: {doc.author}</span><br/><br/>
 
              <span className='fonty fonty2'> Completed: {dateOut.toLocaleDateString()} </span><br/><br/>
               <button 

@@ -59,12 +59,12 @@ return (
 
         <br/>
         <br/> 
-        <img src={tableOfContents} alt="table of contents" width="300vh" />  <br/>
-        <a className='blue-link fonty'  onClick={()=>{ navigate('/book_review')}}>Create a Review.........pg.   3</a><br/>
-        <a className='blue-link fonty' onClick={()=>{ navigate('/book_review_list')}}>List of Reviews..........pg.   4</a>
+        <img src={tableOfContents} alt="table of contents" width="700vh" />  <br/>
+        <a className=' blue-link '  onClick={()=>{ navigate('/book_review')}}>Create a Review.........pg.   3</a><br/>
+        <a className=' blue-link ' onClick={()=>{ navigate('/book_review_list')}}>List of Reviews..........pg.   4</a>
         <br/>
         <br/>
-        <button onClick={()=>{logout()}}>Logout</button>
+        <div className='home-logout' onClick={()=>{logout()}}>Logout</div>
     
     </div>
 

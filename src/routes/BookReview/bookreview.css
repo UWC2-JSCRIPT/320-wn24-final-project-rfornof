@@ -69,6 +69,13 @@ label{
   .fonty2 {
     
     font-size: 25px;
+
+  }
+  .fonty3 {
+    
+    font-size: 20px;
+    text-align: left;
+    
   }
 
 .header-book{
@@ -98,7 +105,7 @@ label{
     text-align: left;
     position:absolute;
     top: 30px;
-    left: 0px;
+    left: 15px;
     padding-top: 20px;
     padding-bottom: 30px;
     padding-left: 20px;
@@ -246,11 +253,11 @@ label{
 }
 .logout-position{
     position: absolute;
-    top: 5px;
+    top: -30px;
     right: 10px;
 }
 .home-position{
     position: absolute;
-    top: 5px;
+    top: -30px;
     right: 40%;
 }

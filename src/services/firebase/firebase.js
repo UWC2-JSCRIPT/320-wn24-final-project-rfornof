@@ -1,6 +1,5 @@
-import dotenv from 'dotenv'
-dotenv.config()
-let config = JSON.parse(process.env.FIREBASE_CONFIG)
+
+import config from '../../../firebaseConfig'
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
 import {getFirestore,collection, getDocs} from 'firebase/firestore'
 import {initializeApp} from 'firebase/app'

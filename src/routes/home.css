@@ -1,7 +1,64 @@
 .blue-link{
+    font-family: "Style Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+    line-height: 150px;
+  
 
 }
 .blue-link:hover{
     color: #2fc9bc;
 text-decoration: underline;
+
 }
+.login-background{
+   position : absolute;
+   top: -250px;
+    left: 30%;
+    width: 40%;
+    z-index: -1;
+
+}
+.login-inputs{
+    position: absolute;
+    left: 43.5%;
+    top: 150px;
+    line-height: 75px;
+   min-width: 100px;
+   
+    /* text-align: left; */
+}
+.login-button{
+    position: absolute;
+    left: 25%;
+    top: 500px;
+    line-height: 75px;
+    background-color: aqua;
+    border-radius: 100%;
+    min-width: 100px;
+    font-size: 3.5vh;
+    font-family: cursive;
+  
+    box-shadow: 10px 10px rgb(191, 162, 203);
+    /* text-align: left; */
+}
+input[type="email"]
+{
+    font-size:24px;
+}
+input[type="password"]
+{
+    font-size:24px;
+}
+.home-logout{
+    font-family: "Style Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+    line-height: 150px;
+    
+  
+}
+.home-logout:hover{
+    color: #2fc9bc;
